@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Classic Home Page with Animated Bubbles and Music</title>
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Georgia', serif;
+      line-height: 1.6;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    /* Navigation Bar */
+    nav {
+      background-color: #333;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 15px 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav ul li {
+      margin: 0 25px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    nav ul li a:hover {
+      text-decoration: underline;
+      color: #f1c40f;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(135deg, #f5e1a4, #f2c1a7);
+      animation: gradientBackground 10s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      padding: 40px;
+    }
+
+    .hero h1 {
+      font-size: 4em;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeIn 2s forwards;
+    }
+
+    .hero p {
+      font-size: 1.5em;
+      margin-bottom: 30px;
+      opacity: 0;
+      animation: fadeIn 3s forwards;
+    }
+
+    .hero button {
+      background-color: #f1c40f;
+      color: white;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      animation: fadeIn 4s forwards;
+      text-transform: uppercase;
+    }
+
+    .hero button:hover {
+      background-color: #e67e22;
+    }
+
+    /* Enter Button */
+    .enter-btn {
+      margin-top: 20px;
+      background-color: #3498db;
+      color: white;
+      padding: 10px 25px;
+      font-size: 1.2em;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      text-transform: uppercase;
+      animation: fadeIn 5s forwards;
+    }
+
+    .enter-btn:hover {
+      background-color: #2980b9;
+    }
+
+    /* Floating Bubbles */
+    .bubble {
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.4);
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: float 8s infinite ease-in-out;
+    }
+
+    .bubble:nth-child(1) {
+      width: 80px;
+      height: 80px;
+      animation-duration: 10s;
+      top: 30%;
+      left: 15%;
+    }
+
+    .bubble:nth-child(2) {
+      width: 60px;
+      height: 60px;
+      animation-duration: 9s;
+      top: 20%;
+      left: 50%;
+    }
+
+    .bubble:nth-child(3) {
+      width: 100px;
+      height: 100px;
+      animation-duration: 7s;
+      top: 50%;
+      left: 70%;
+    }
+
+    .bubble:nth-child(4) {
+      width: 50px;
+      height: 50px;
+      animation-duration: 12s;
+      top: 60%;
+      left: 80%;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+      }
+      50% {
+        transform: translateY(-300px) scale(1.2);
+        opacity: 0.3;
+      }
+      100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+      }
+    }
+
+    @keyframes gradientBackground {
+      0% {
+        background: linear-gradient(135deg, #f5e1a4, #f2c1a7);
+      }
+      50% {
+        background: linear-gradient(135deg, #d8b4a0, #b8a6d0);
+      }
+      100% {
+        background: linear-gradient(135deg, #f5e1a4, #f2c1a7);
+      }
+    }
+
+    /* About Section */
+    #about {
+      padding: 60px 20px;
+      text-align: center;
+      background-color: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-top: 40px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    #about h2 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      font-family: 'Georgia', serif;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* Services Section */
+    #services {
+      padding: 60px 20px;
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+
+    #services h2 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      font-family: 'Georgia', serif;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .services-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .service-box {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 30%;
+      transition: transform 0.3s;
+      opacity: 0;
+      animation: fadeUp 1s forwards;
+      border: 2px solid #f1c40f;
+    }
+
+    .service-box:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+
+    .service-box:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+
+    .service-box:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    .service-box:hover {
+      transform: translateY(-10px);
+    }
+
+    .service-box h3 {
+      font-size: 1.8em;
+      margin-bottom: 10px;
+      font-family: 'Georgia', serif;
+      color: #333;
+    }
+
+    /* Contact Section */
+    #contact {
+      padding: 60px 20px;
+      text-align: center;
+      background-color: #333;
+      color: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-top: 40px;
+      border-radius: 8px;
+    }
+
+    #contact h2 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      font-family: 'Georgia', serif;
+    }
+
+    #contact button {
+      background-color: #f1c40f;
+      color: white;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      text-transform: uppercase;
+    }
+
+    #contact button:hover {
+      background-color: #e67e22;
+    }
+
+    /* Smooth Scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+
+    /* Button disappearing animation */
+    .disappear {
+      animation: fadeOut 2s forwards;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Welcome to Our Website</h1>
+      <p>Lets know about us ...</p>
+      <button id="music-btn" onclick="playMusicAndDisappear()">Play Music</button>
+      <!-- Enter Button -->
+      <button class="enter-btn" onclick="window.location.href='all.html'">Enter</button>
+    </div>
+
+    <!-- Floating Bubbles -->
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Us</h2>
+    <p>We are a creative team helping, you  achieve your aukaat with these information.</p>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services">
+    <h2>Our Services</h2>
+    <div class="services-container">
+      <div class="service-box">
+        <h3>Cutiya banana</h3>
+        <p>logo ke life pr has ke chutiya bana sakte hai ham log</p>
+      </div>
+      <div class="service-box">
+        <h3>Gali dena</h3>
+        <p>Logo ki maa behen 1 karne se hamari ma behen ka kuch nahi jata</p>
+      </div>
+      <div class="service-box">
+        <h3>Bakchodi karna</h3>
+        <p>bakchodi krna pasand hai lekin kalya ki tarah nahi</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Muh me lena hai kya be ja ma chuda </p>
+    <button onclick="scrollToTop()">Back to Top</button>
+  </section>
+
+  <!-- Audio Player (Theme Song) -->
+  <audio id="bg-music" loop autoplay>
+    <source src="keys-of-moon-lullaby(chosic.com).mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    // Function to play music and disappear the button
+    function playMusicAndDisappear() {
+      const audio = document.getElementById('bg-music');
+      const button = document.getElementById('music-btn');
+      audio.play(); // Play the music
+      button.classList.add('disappear'); // Add disappearing animation class
+    }
+
+    // Scroll to top
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
